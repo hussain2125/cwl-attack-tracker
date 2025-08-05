@@ -3,41 +3,57 @@ import coc
 import asyncio
 from datetime import datetime, timezone
 from urllib.parse import unquote
+import os
+from production_config import config
 
-app = Flask(__name__)
+# Configure Flask app with explicit static folder
+app = Flask(__name__, static_folder='static', static_url_path='/static')
+app.config.from_object(config)
+
+# Add explicit route for static files (backup)
+@app.route('/static/<path:filename>')
+def static_files(filename):
+    return app.send_static_file(filename)
+
+# Test route to check static file accessibility
+@app.route('/test-static')
+def test_static():
+    try:
+        # Check if style.css exists
+        css_path = os.path.join(app.static_folder, 'style.css')
+        exists = os.path.exists(css_path)
+        return {
+            'static_folder': app.static_folder,
+            'static_url_path': app.static_url_path,
+            'css_exists': exists,
+            'css_path': css_path,
+            'current_dir': os.getcwd(),
+            'files_in_static': os.listdir(app.static_folder) if os.path.exists(app.static_folder) else []
+        }
+    except Exception as e:
+        return {'error': str(e)}
 
 EMAIL = "oceanshah86@gmail.com"
 PASSWORD = "Ocean$&123"
 
 @app.route("/", methods=["GET", "POST"])
 def index():
-    # Debug: Print all request parameters
-    print(f"Request method: {request.method}")
-    print(f"GET args: {request.args}")
-    print(f"POST form: {request.form}")
-    
     # Get clan tag from GET parameter or POST form (both use 'clan' now)
     # Handle URL encoding - decode the clan parameter
     clan_tag_raw = request.args.get('clan') or request.form.get('clan') or ""
     clan_tag = unquote(clan_tag_raw) if clan_tag_raw else ""
-    print(f"Raw clan_tag: '{clan_tag_raw}'")
-    print(f"Decoded clan_tag: '{clan_tag}'")
     
     # Only fetch data if a clan tag is provided
     if clan_tag:
-        print(f"Fetching data for clan: {clan_tag}")
-        # Fix for production environment with gunicorn
+        # Fix for production environment
         try:
-            # Try to get the current event loop
             loop = asyncio.get_event_loop()
         except RuntimeError:
-            # If no event loop is running, create a new one
             loop = asyncio.new_event_loop()
             asyncio.set_event_loop(loop)
         
         data = loop.run_until_complete(fetch_data(clan_tag))
     else:
-        print("No clan tag provided, showing empty page")
         # Return empty data for initial page load
         data = {
             "clan_name": "",
@@ -163,7 +179,6 @@ async def fetch_data(clan_tag):
             await client.close()
         except Exception as e:
             print(f"Error closing client: {e}")
-            # Ignore close errors in production
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(host='0.0.0.0', port=5000)
