@@ -1,0 +1,576 @@
+/* Professional Dark Theme CWL War Tracker */
+* {
+    box-sizing: border-box;
+}
+
+html, body {
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%) !important;
+    background-attachment: fixed !important;
+    min-height: 100vh !important;
+}
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%);
+    background-attachment: fixed;
+    color: #f1f5f9;
+    line-height: 1.6;
+}
+
+.bg-gradient {
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%) !important;
+    min-height: 100vh;
+}
+
+/* Override Bootstrap background */
+.container-fluid {
+    background: transparent !important;
+}
+
+/* Clan Input Styles */
+.clan-input-card {
+    background: rgba(30, 41, 59, 0.8);
+    backdrop-filter: blur(10px);
+    border-radius: 16px;
+    padding: 2rem;
+    border: 1px solid rgba(148, 163, 184, 0.2);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    position: relative;
+}
+
+.input-title {
+    color: #f1f5f9;
+    margin-bottom: 1.5rem;
+    font-weight: 600;
+    font-size: 1.2rem;
+    text-shadow: none;
+}
+
+.clan-input-form {
+    margin-bottom: 0;
+}
+
+.clan-tag-input {
+    background: rgba(15, 23, 42, 0.8);
+    border: 1px solid rgba(148, 163, 184, 0.3);
+    color: #f1f5f9;
+    border-radius: 8px 0 0 8px;
+    padding: 0.875rem;
+    font-size: 0.875rem;
+    transition: all 0.2s ease;
+}
+
+.clan-tag-input:focus {
+    background: rgba(15, 23, 42, 0.9);
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+    outline: none;
+    color: #f1f5f9;
+}
+
+.clan-tag-input::placeholder {
+    color: #94a3b8;
+}
+
+.track-btn {
+    background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+    border: 1px solid #3b82f6;
+    border-radius: 0 8px 8px 0;
+    padding: 0.875rem 1.5rem;
+    font-weight: 600;
+    transition: all 0.2s ease;
+}
+
+.track-btn:hover {
+    background: linear-gradient(135deg, #2563eb, #1e40af);
+    border-color: #2563eb;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+}
+
+.form-text {
+    color: #e2e8f0;
+    font-size: 0.875rem;
+    margin-top: 0.5rem;
+}
+
+/* Header Styles */
+.war-header {
+    margin-bottom: 2.5rem;
+}
+
+.war-header h1 {
+    color: #f8fafc;
+    text-shadow: none;
+    margin-bottom: 2rem;
+    font-weight: 700;
+    font-size: 2.5rem;
+    letter-spacing: -0.025em;
+}
+
+.war-info-card {
+    background: rgba(30, 41, 59, 0.8);
+    backdrop-filter: blur(10px);
+    border-radius: 16px;
+    padding: 2rem;
+    border: 1px solid rgba(148, 163, 184, 0.2);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    position: relative;
+}
+
+.clan-vs-section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 2rem;
+    margin-bottom: 1.5rem;
+    position: relative;
+}
+
+.clan-name, .enemy-name {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #f8fafc;
+    padding: 1rem 1.5rem;
+    border-radius: 12px;
+    transition: all 0.2s ease;
+    border: 1px solid rgba(148, 163, 184, 0.3);
+    background: rgba(30, 41, 59, 0.6);
+}
+
+.clan-name {
+    background: rgba(34, 197, 94, 0.2);
+    border-color: #22c55e;
+    color: #4ade80;
+}
+
+.enemy-name {
+    background: rgba(239, 68, 68, 0.2);
+    border-color: #ef4444;
+    color: #f87171;
+}
+
+.vs-divider {
+    position: relative;
+    margin: 0 1rem;
+}
+
+.vs-text {
+    color: #94a3b8;
+    font-size: 1.5rem;
+    font-weight: 600;
+    text-shadow: none;
+    animation: none;
+}
+
+.war-timer {
+    color: #cbd5e1;
+    font-size: 1rem;
+    font-weight: 500;
+    text-shadow: none;
+    position: relative;
+    z-index: 1;
+}
+
+.timer-info {
+    margin-bottom: 0.5rem;
+}
+
+.time-remaining {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #fbbf24;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+/* Dropdown Controls */
+.dropdown-controls {
+    margin-bottom: 2rem;
+}
+
+.dropdown-card {
+    background: rgba(30, 41, 59, 0.8);
+    backdrop-filter: blur(10px);
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(148, 163, 184, 0.2);
+    transition: all 0.2s ease;
+    position: relative;
+}
+
+.dropdown-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+}
+
+.dropdown-title {
+    color: #f1f5f9;
+    margin-bottom: 1rem;
+    font-weight: 600;
+    font-size: 1rem;
+    text-shadow: none;
+}
+
+.dropdown-select {
+    border: 1px solid rgba(148, 163, 184, 0.3);
+    border-radius: 8px;
+    padding: 0.875rem;
+    font-size: 0.875rem;
+    transition: all 0.2s ease;
+    background: rgba(15, 23, 42, 0.8);
+    color: #f1f5f9;
+    width: 100%;
+}
+
+.dropdown-select:focus {
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+    outline: none;
+}
+
+.dropdown-select option {
+    background: #1e293b;
+    color: #f1f5f9;
+}
+
+/* Data Cards */
+.data-card {
+    background: rgba(30, 41, 59, 0.8);
+    backdrop-filter: blur(10px);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(148, 163, 184, 0.2);
+    transition: all 0.2s ease;
+    position: relative;
+}
+
+.data-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+}
+
+.card-header {
+    background: rgba(15, 23, 42, 0.8);
+    color: #f1f5f9;
+    padding: 1.25rem 1.5rem;
+    border-bottom: 1px solid rgba(148, 163, 184, 0.2);
+    position: relative;
+}
+
+.card-header h5 {
+    margin: 0;
+    font-weight: 600;
+    font-size: 1rem;
+    text-shadow: none;
+}
+
+.card-body {
+    padding: 1.5rem;
+    max-height: 400px;
+    overflow-y: auto;
+    background: rgba(30, 41, 59, 0.4);
+}
+
+/* Player Items */
+.player-item {
+    display: flex;
+    align-items: center;
+    padding: 1.25rem;
+    margin-bottom: 1rem;
+    border-radius: 12px;
+    transition: all 0.2s ease;
+    border: 1px solid rgba(148, 163, 184, 0.2);
+    background: rgba(15, 23, 42, 0.6);
+    position: relative;
+}
+
+.player-item:hover {
+    transform: translateX(4px);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+    border-color: rgba(148, 163, 184, 0.4);
+    background: rgba(15, 23, 42, 0.8);
+}
+
+.player-item.attacks-left {
+    background: rgba(245, 158, 11, 0.15);
+    border-color: #f59e0b;
+}
+
+.player-item.fresh-base {
+    background: rgba(34, 197, 94, 0.15);
+    border-color: #22c55e;
+}
+
+.th-icon {
+    width: 48px;
+    height: 48px;
+    margin-right: 1.25rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    transition: transform 0.2s ease;
+}
+
+.player-item:hover .th-icon {
+    transform: scale(1.05);
+}
+
+.player-info {
+    flex: 1;
+}
+
+.player-name {
+    font-weight: 600;
+    color: #f8fafc;
+    font-size: 1rem;
+    margin-bottom: 0.25rem;
+    text-shadow: none;
+}
+
+.player-details {
+    color: #cbd5e1;
+    font-size: 0.875rem;
+    font-weight: 500;
+}
+
+.player-badge {
+    background: #3b82f6;
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 0.875rem;
+    min-width: 60px;
+    text-align: center;
+    box-shadow: 0 2px 8px rgba(59, 130, 246, 0.3);
+    transition: all 0.2s ease;
+}
+
+.player-badge:hover {
+    transform: none;
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4);
+}
+
+.player-badge.fresh {
+    background: #22c55e;
+    box-shadow: 0 2px 8px rgba(34, 197, 94, 0.3);
+}
+
+.player-badge.fresh:hover {
+    box-shadow: 0 4px 12px rgba(34, 197, 94, 0.4);
+}
+
+/* Alerts */
+.alert {
+    border-radius: 8px;
+    border: 1px solid;
+    padding: 1rem 1.25rem;
+    font-weight: 500;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.alert-success {
+    background: rgba(34, 197, 94, 0.15);
+    color: #4ade80;
+    border-color: #22c55e;
+}
+
+.alert-danger {
+    background: rgba(239, 68, 68, 0.15);
+    color: #f87171;
+    border-color: #ef4444;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .container-fluid {
+        padding: 1rem;
+    }
+
+    .clan-input-card {
+        padding: 1.5rem;
+    }
+
+    .input-title {
+        font-size: 1.1rem;
+    }
+
+    .war-header h1 {
+        font-size: 2rem;
+    }
+
+    .clan-vs-section {
+        flex-direction: column;
+        text-align: center;
+        gap: 1rem;
+    }
+
+    .clan-name, .enemy-name {
+        font-size: 1.125rem;
+        padding: 0.875rem 1.25rem;
+    }
+
+    .vs-text {
+        font-size: 1.25rem;
+    }
+
+    .war-info-card {
+        padding: 1.5rem;
+    }
+
+    .dropdown-card {
+        padding: 1.25rem;
+        margin-bottom: 1rem;
+    }
+
+    .player-item {
+        padding: 1rem;
+        margin-bottom: 0.75rem;
+    }
+
+    .th-icon {
+        width: 40px;
+        height: 40px;
+        margin-right: 1rem;
+    }
+
+    .player-name {
+        font-size: 0.9375rem;
+    }
+
+    .player-details {
+        font-size: 0.8125rem;
+    }
+
+    .player-badge {
+        padding: 0.375rem 0.75rem;
+        font-size: 0.8125rem;
+        min-width: 50px;
+    }
+
+    .time-remaining {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .clan-input-card {
+        padding: 1.25rem;
+    }
+
+    .input-title {
+        font-size: 1rem;
+    }
+
+    .war-header h1 {
+        font-size: 1.75rem;
+    }
+
+    .clan-name, .enemy-name {
+        font-size: 1rem;
+        padding: 0.75rem 1rem;
+    }
+
+    .vs-text {
+        font-size: 1.125rem;
+    }
+
+    .war-info-card {
+        padding: 1.25rem;
+    }
+
+    .dropdown-card {
+        padding: 1rem;
+    }
+
+    .card-body {
+        padding: 1rem;
+    }
+
+    .player-item {
+        flex-direction: column;
+        text-align: center;
+        gap: 0.75rem;
+        padding: 1.25rem;
+    }
+
+    .th-icon {
+        margin-right: 0;
+        margin-bottom: 0.5rem;
+        width: 44px;
+        height: 44px;
+    }
+
+    .player-badge {
+        margin-top: 0.5rem;
+    }
+
+    .player-name {
+        font-size: 0.875rem;
+    }
+
+    .player-details {
+        font-size: 0.75rem;
+    }
+
+    .time-remaining {
+        font-size: 0.9375rem;
+    }
+}
+
+/* Scrollbar Styling */
+.card-body::-webkit-scrollbar {
+    width: 6px;
+}
+
+.card-body::-webkit-scrollbar-track {
+    background: rgba(15, 23, 42, 0.5);
+    border-radius: 3px;
+}
+
+.card-body::-webkit-scrollbar-thumb {
+    background: rgba(148, 163, 184, 0.5);
+    border-radius: 3px;
+    border: none;
+}
+
+.card-body::-webkit-scrollbar-thumb:hover {
+    background: rgba(148, 163, 184, 0.7);
+}
+
+/* Animation for loading */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.data-card {
+    animation: fadeInUp 0.3s ease-out;
+}
+
+/* Additional hover effects */
+.war-info-card:hover {
+    transform: none;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+/* Professional typography */
+.war-header h1 {
+    filter: none;
+}
+
+.vs-text {
+    filter: none;
+}
