@@ -26,8 +26,15 @@ def index():
     # Only fetch data if a clan tag is provided
     if clan_tag:
         print(f"Fetching data for clan: {clan_tag}")
-        loop = asyncio.new_event_loop()
-        asyncio.set_event_loop(loop)
+        # Fix for production environment with gunicorn
+        try:
+            # Try to get the current event loop
+            loop = asyncio.get_event_loop()
+        except RuntimeError:
+            # If no event loop is running, create a new one
+            loop = asyncio.new_event_loop()
+            asyncio.set_event_loop(loop)
+        
         data = loop.run_until_complete(fetch_data(clan_tag))
     else:
         print("No clan tag provided, showing empty page")
@@ -152,7 +159,11 @@ async def fetch_data(clan_tag):
     except Exception as e:
         return {"error": str(e)}
     finally:
-        await client.close()
+        try:
+            await client.close()
+        except Exception as e:
+            print(f"Error closing client: {e}")
+            # Ignore close errors in production
 
 if __name__ == "__main__":
     app.run(debug=True)
